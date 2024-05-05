@@ -21,6 +21,7 @@ from sklearn.preprocessing import LabelEncoder
 import tensorflow as tf
 from tensorflow.keras import layers, models
 
+
 # Custom dataset class
 class AudioDataset(Dataset):
     def __init__(self, audio_files, labels, transform=None):
@@ -37,6 +38,7 @@ class AudioDataset(Dataset):
         if self.transform:
             audio = self.transform(audio)
         return audio, label
+
 
 # Define the CNN
 class AudioClassifier(nn.Module):
@@ -55,6 +57,7 @@ class AudioClassifier(nn.Module):
         x = nn.functional.relu(self.fc1(x))
         x = self.fc2(x)
         return x
+
 
 # Load data
 audio_files = ["path/to/audio1.wav", "path/to/audio2.wav"]
@@ -79,7 +82,7 @@ for epoch in range(5):
         loss.backward()
         optimizer.step()
 
-    print(f"Epoch {epoch+1}, Loss: {loss.item()}")
+    print(f"Epoch {epoch + 1}, Loss: {loss.item()}")
 
 print("Training complete.")
 
